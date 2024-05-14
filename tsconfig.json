@@ -25,7 +25,7 @@
     "dev/**/*.ts",
     "dev/**/*.tsx",
     "packages/**/*.tsx",
-    "packages/**/*.ts"
+    "packages/**/*.ts",
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
