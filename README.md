@@ -1,1 +1,1 @@
-"# rq-editor" 
+# rq-editor
