@@ -1,0 +1,40 @@
+{
+  "name": "rq-editor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx ./scripts/dev",
+    "prettier": "prettier . --write"
+  },
+  "keywords": [],
+  "author": {
+    "name": "renranSY",
+    "url": "https://github.com/renranSY"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@tabler/icons-react": "^3.3.0",
+    "quill": "^2.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vite": "^5.2.11"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.11",
+    "@types/react": "^18.3.2",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/parser": "^7.8.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^9.2.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "globals": "^15.2.0",
+    "less": "^4.2.0",
+    "prettier": "^3.2.5",
+    "tsx": "^4.10.1",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.8.0"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "jsx": "preserve",
+    "lib": ["ESNext", "DOM"],
+    "module": "ESNext",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "dev/src/*"
+      ],
+      "~/*": [
+        "packages/*"
+      ],
+    },
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "Node",
+    "noEmit": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "dev/**/*.ts",
+    "dev/**/*.tsx",
+    "packages/**/*.tsx",
+    "packages/**/*.ts"
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
