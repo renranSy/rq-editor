@@ -1,1 +1,2 @@
-export { default as RTEditor } from './RTEditor'
+import RTEditor from '~/RTEditor'
+export default RTEditor

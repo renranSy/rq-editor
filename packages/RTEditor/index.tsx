@@ -1,7 +1,14 @@
-import React, { useEffect, useRef } from 'react'
+import React, { CSSProperties, useEffect, useRef } from 'react'
 import Quill from 'quill'
 import 'quill/dist/quill.snow.css'
 import './index.less'
+
+type Props = {
+  value: string
+  onChange?: (content: string) => void
+  className?: string
+  style?: CSSProperties
+}
 
 const toolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'], // toggled buttons
@@ -24,12 +31,7 @@ const toolbarOptions = [
   ['clean'] // remove formatting button
 ]
 
-type Props = {
-  value: string
-  onChange?: (content: string) => void
-}
-
-const RTEditor: React.FC<Props> = ({ value, onChange }) => {
+const RTEditor: React.FC<Props> = ({ value, onChange, className, style }) => {
   const editorRef = useRef<HTMLDivElement>(null)
 
   let editor: Quill | null = null
@@ -58,9 +60,9 @@ const RTEditor: React.FC<Props> = ({ value, onChange }) => {
   }, [])
 
   return (
-    <>
+    <div className={className} style={style}>
       <div ref={editorRef}></div>
-    </>
+    </div>
   )
 }
 
