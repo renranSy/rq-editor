@@ -1,2 +1,2 @@
-import RTEditor from '~/RTEditor'
-export default RTEditor
+import RQEditor from '~/RQEditor'
+export default RQEditor

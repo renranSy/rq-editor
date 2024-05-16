@@ -1,34 +1,9 @@
-import React, { CSSProperties, useEffect, useRef } from 'react'
+import React, { CSSProperties, useEffect, useRef, useState } from 'react'
 import Quill from 'quill'
 import './index.less'
-import {
-  IconAlignLeft,
-  IconBold,
-  IconChevronDown,
-  IconClearFormatting,
-  IconCode,
-  IconHeading,
-  IconHighlight,
-  IconIndentDecrease,
-  IconIndentIncrease,
-  IconItalic,
-  IconLineHeight,
-  IconLink,
-  IconList,
-  IconListCheck,
-  IconListNumbers,
-  IconMoodSmile,
-  IconPhoto,
-  IconPlus,
-  IconQuote,
-  IconStrikethrough,
-  IconSubscript,
-  IconSuperscript,
-  IconTable,
-  IconTextColor,
-  IconTextSize,
-  IconUnderline
-} from '@tabler/icons-react'
+import Toolbar from '~/Toolbar'
+import { RQ } from '~/type'
+import { defaultItems } from '~/RQEditor/config'
 
 type Props = {
   value: string
@@ -39,14 +14,16 @@ type Props = {
   containerStyle?: CSSProperties
   toolbarStyle?: CSSProperties
   editorStyle?: CSSProperties
+  type?: 'preview' | 'edit'
+  mode?: 'light' | 'normal'
+  toolbar?: string[]
+  custom?: RQ.ToolbarItem[]
 }
 
 const RTEditor: React.FC<Props> = (props) => {
-  const toolbarRef = useRef<HTMLDivElement>(null)
   const editorRef = useRef<HTMLDivElement>(null)
 
-  let editor: Quill | null = null
-
+  const [editor, setEditor] = useState<Quill>()
   useEffect(() => {
     if (editorRef.current) {
       editorRef.current.innerHTML = props.value
@@ -55,12 +32,14 @@ const RTEditor: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (editorRef.current) {
-      editor = new Quill(editorRef.current, {
-        theme: 'snow',
-        modules: {
-          toolbar: null
-        }
-      })
+      setEditor(
+        new Quill(editorRef.current, {
+          theme: 'snow',
+          modules: {
+            toolbar: null
+          }
+        })
+      )
 
       if (editor != null) {
         editor.on('text-change', () => {
@@ -72,95 +51,7 @@ const RTEditor: React.FC<Props> = (props) => {
 
   return (
     <div className={['rq-container', props.divClassName].join(' ')} style={props.containerStyle}>
-      <div ref={toolbarRef} className={['rq-toolbar', props.toolbarClassName].join(' ')}>
-        <button>
-          <IconPlus className="rq-icon" />
-          <IconChevronDown className="rq-icon rq-icon-down" />
-        </button>
-        <div className="rq-divider"></div>
-        <button>
-          <IconHeading className="rq-icon" />
-          <IconChevronDown className="rq-icon rq-icon-down" />
-        </button>
-        <button>
-          <IconTextSize className="rq-icon" />
-          <IconChevronDown className="rq-icon rq-icon-down" />
-        </button>
-        <div className="rq-divider"></div>
-        <button>
-          <IconBold className="rq-icon" />
-        </button>
-        <button>
-          <IconItalic className="rq-icon" />
-        </button>
-        <button>
-          <IconUnderline className="rq-icon" />
-        </button>
-        <button>
-          <IconStrikethrough className="rq-icon" />
-        </button>
-        <button>
-          <IconTextColor className="rq-icon" />
-        </button>
-        <button>
-          <IconHighlight className="rq-icon" />
-        </button>
-        <button>
-          <IconSubscript className="rq-icon" />
-        </button>
-        <button>
-          <IconSuperscript className="rq-icon" />
-        </button>
-        <button>
-          <IconCode className="rq-icon" />
-        </button>
-        <button>
-          <IconQuote className="rq-icon" />
-        </button>
-        <div className="rq-divider"></div>
-        <button>
-          <IconAlignLeft className="rq-icon" />
-          <IconChevronDown className="rq-icon rq-icon-down" />
-        </button>
-        <button>
-          <IconLineHeight className="rq-icon" />
-          <IconChevronDown className="rq-icon rq-icon-down" />
-        </button>
-        <button>
-          <IconList className="rq-icon" />
-        </button>
-        <button>
-          <IconListNumbers className="rq-icon" />
-        </button>
-        <button>
-          <IconListCheck className="rq-icon" />
-        </button>
-        <button>
-          <IconIndentDecrease className="rq-icon" />
-        </button>
-        <button>
-          <IconIndentIncrease className="rq-icon" />
-        </button>
-        <button>
-          <IconLink className="rq-icon" />
-        </button>
-        <div className="rq-divider"></div>
-        <button>
-          <IconPhoto className="rq-icon" />
-        </button>
-        <button>
-          <IconTable className="rq-icon" />
-          <IconChevronDown className="rq-icon rq-icon-down" />
-        </button>
-        <button>
-          <IconMoodSmile className="rq-icon" />
-          <IconChevronDown className="rq-icon rq-icon-down" />
-        </button>
-        <div className="rq-divider"></div>
-        <button>
-          <IconClearFormatting className="rq-icon" />
-        </button>
-      </div>
+      <Toolbar className="ql-toolbar" items={defaultItems} editor={editor} editorRef={editorRef.current} />
       <div ref={editorRef} className={['rq-editor', props.editorClassName].join(' ')} contentEditable={true}></div>
     </div>
   )
