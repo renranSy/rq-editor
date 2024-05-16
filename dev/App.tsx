@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import RTEditor from '~/RTEditor'
+import RTEditor from '~/RQEditor'
 
 const App = () => {
-  const [value, setValue] = useState('<strong>111</strong>')
+  const [value, setValue] = useState('123456789')
   return (
     <>
       <RTEditor
@@ -11,6 +11,7 @@ const App = () => {
           console.log(content)
           setValue(content)
         }}
+        custom={[]}
       />
     </>
   )
