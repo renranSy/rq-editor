@@ -11,7 +11,7 @@ const resolvePath = (p: string) => path.resolve(__dirname, p)
 !(async () => {
   const moduleEntry = {
     index: resolvePath('packages'),
-    RTEditor: resolvePath('packages/RTEditor')
+    RQEditor: resolvePath('packages/RQEditor')
   }
   const formats: LibraryFormats[] = ['es', 'cjs', 'umd']
 
@@ -63,7 +63,7 @@ const resolvePath = (p: string) => path.resolve(__dirname, p)
           outDir: resolvePath('lib'),
           lib: {
             entry: entries[t],
-            name: 'RTEditor',
+            name: 'RQEditor',
             formats: [t],
             fileName(format) {
               switch (format) {

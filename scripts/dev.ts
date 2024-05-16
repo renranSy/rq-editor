@@ -7,7 +7,6 @@ const __dirname = fileURLToPath(new URL('..', import.meta.url))
 const resolvePath = (p: string) => path.resolve(__dirname, p)
 
 !(async () => {
-  console.log(resolvePath('dev'))
   const server = await createServer({
     root: 'dev',
     base: '/',
