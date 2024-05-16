@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import RTEditor from '~/RTEditor'
 
 const App = () => {
-  const [value, setValue] = useState('<p>111</p>')
+  const [value, setValue] = useState('<strong>111</strong>')
   return (
     <>
       <RTEditor
