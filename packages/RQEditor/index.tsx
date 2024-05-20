@@ -1,9 +1,10 @@
 import React, { CSSProperties, useEffect, useRef, useState } from 'react'
-import Quill from 'quill'
 import './index.less'
 import Toolbar from '~/Toolbar'
 import { RQ } from '~/type'
 import { defaultItems } from '~/RQEditor/config'
+import 'quill/dist/quill.snow.css'
+import Quill from '~/register'
 
 type Props = {
   value: string
@@ -22,8 +23,8 @@ type Props = {
 
 const RTEditor: React.FC<Props> = (props) => {
   const editorRef = useRef<HTMLDivElement>(null)
+  const [editor, setEditor] = useState<Quill | null>(null)
 
-  const [editor, setEditor] = useState<Quill>()
   useEffect(() => {
     if (editorRef.current) {
       editorRef.current.innerHTML = props.value
@@ -48,11 +49,10 @@ const RTEditor: React.FC<Props> = (props) => {
       }
     }
   }, [])
-
   return (
     <div className={['rq-container', props.divClassName].join(' ')} style={props.containerStyle}>
-      <Toolbar className="ql-toolbar" items={defaultItems} editor={editor} editorRef={editorRef.current} />
-      <div ref={editorRef} className={['rq-editor', props.editorClassName].join(' ')} contentEditable={true}></div>
+      <Toolbar className="ql-toolbar" items={defaultItems} editor={editor} />
+      <div ref={editorRef} className={['rq-editor', props.editorClassName].join(' ')}></div>
     </div>
   )
 }
