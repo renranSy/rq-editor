@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import RTEditor from '~/RQEditor'
 
 const App = () => {
-  const [value, setValue] = useState('123456789')
+  const [value, setValue] = useState('')
   return (
     <>
       <RTEditor
         value={value}
         onChange={(content) => {
-          console.log(content)
           setValue(content)
         }}
         custom={[]}

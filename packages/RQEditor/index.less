@@ -3,7 +3,6 @@
   box-sizing: border-box;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0, rgba(27, 31, 35, 0.15) 0 0 0 1px;
   border-radius: 4px;
-  overflow: hidden;
 
   .rq-toolbar {
     box-sizing: border-box;
@@ -24,6 +23,7 @@
     .rq-icon-down {
       width: 16px;
       height: 16px;
+      font-weight: bold;
     }
 
     button {
@@ -35,10 +35,11 @@
       border: 0;
       border-radius: 6px;
       cursor: pointer;
+      color: #0f172a;
       transition: all 200ms;
 
       &:hover {
-        background-color: #f2f5f9!important;
+        background-color: #f2f5f9 !important;
       }
     }
 
@@ -48,6 +49,49 @@
       margin: 0 1px;
       border-radius: 2px;
       background-color: #e2e8f0;
+    }
+
+    .rq-select {
+      position: relative;
+    }
+
+    .rq-options {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      position: absolute;
+      left: 2px;
+      bottom: 0;
+      padding: 4px;
+      transform: translateY(calc(100% + 4px));
+      background-color: #ffffff;
+      box-shadow: rgba(50, 50, 105, 0.15) 0 2px 5px 0, rgba(0, 0, 0, 0.05) 0 1px 1px 0;
+      border-radius: 6px;
+      z-index: -99;
+      opacity: 0;
+      transition: all 200ms;
+
+      .rq-option-item {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        padding: 0 8px;
+        cursor: pointer;
+        color: #0f172a;
+        font-size: 14px;
+        border-radius: 6px;
+        transition: all 200ms;
+
+        &:hover {
+          background-color: #f2f5f9 !important;
+        }
+      }
+
+      .rq-option-active {
+        background-color: #f2f5f9 !important;
+      }
     }
   }
 
