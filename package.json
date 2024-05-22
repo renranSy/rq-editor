@@ -1,7 +1,6 @@
 {
   "name": "rq-editor",
   "version": "0.0.12",
-  "homepage": "https://renranSy.githbu.io/rq-editor",
   "description": "基于Quill的React富文本编辑器",
   "keywords": [
     "quill",
