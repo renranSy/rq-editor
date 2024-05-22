@@ -1,6 +1,7 @@
 {
   "name": "rq-editor",
   "version": "0.0.12",
+  "homepage": "https://renranSy.githbu.io/rq-editor",
   "description": "基于Quill的React富文本编辑器",
   "keywords": [
     "quill",
@@ -9,9 +10,9 @@
     "editor"
   ],
   "author": {
-    "name": "renranSY",
+    "name": "renranSy",
     "email": "<2480901422@qq.com>",
-    "url": "https://github.com/renranSY"
+    "url": "https://github.com/renranSy"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
   "license": "ISC",
   "scripts": {
     "dev": "tsx ./scripts/dev",
+    "deploy": "gh-pages -d build",
     "build": "tsx ./scripts/build",
     "prettier": "prettier . --write"
   },
