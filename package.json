@@ -31,7 +31,6 @@
   "license": "ISC",
   "scripts": {
     "dev": "tsx ./scripts/dev",
-    "deploy": "gh-pages -d build",
     "build": "tsx ./scripts/build",
     "prettier": "prettier . --write"
   },
