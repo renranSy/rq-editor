@@ -1,15 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { IconChevronDown } from '@tabler/icons-react'
+import { RQ } from '~/type'
 
 type Props = {
-  value: string | boolean
-  onChange: (value: string | boolean) => void
-  item: (value: string | boolean) => React.ReactNode
+  value: RQ.Value
+  onChange: (value: RQ.Value) => void
+  item: (value: RQ.Value) => React.ReactNode
   options: SelectOption[]
 }
 
 type SelectOption = {
-  value: string | boolean
+  value: RQ.Value
   element: React.ReactNode
 }
 
