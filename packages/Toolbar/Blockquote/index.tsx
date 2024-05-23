@@ -48,8 +48,8 @@ const Blockquote: React.FC<Props> = ({ editor }) => {
       return
     }
 
-    const handler = () => {
-      if (!btnRef.current) {
+    const handler = (range: Range) => {
+      if (!range || !btnRef.current) {
         return
       }
       const isFormat = editor.getFormat().hasOwnProperty('blockquote')
