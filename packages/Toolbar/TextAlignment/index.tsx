@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Quill from 'quill'
+import Quill, { Range } from 'quill'
 import Select from '~/components/Select'
 import { IconAlignCenter, IconAlignJustified, IconAlignLeft, IconAlignRight } from '@tabler/icons-react'
 
@@ -44,15 +44,22 @@ const TextAlignment: React.FC<Props> = ({ editor }) => {
       return
     }
 
-    const handler = () => {
+    const selectionChangeHandler = (range: Range) => {
+      if (!range) {
+        return
+      }
       setValue(editor.getFormat()['align'] as string | boolean)
     }
-    editor.on('selection-change', handler)
-    editor.on('editor-change', handler)
+
+    const textChangeHandler = () => {
+      setValue(editor.getFormat()['align'] as string | boolean)
+    }
+    editor.on('selection-change', selectionChangeHandler)
+    editor.on('text-change', textChangeHandler)
 
     return () => {
-      editor.off('selection-change', handler)
-      editor.off('editor-change', handler)
+      editor.off('selection-change', selectionChangeHandler)
+      editor.off('text-change', textChangeHandler)
     }
   }, [editor, value])
 
