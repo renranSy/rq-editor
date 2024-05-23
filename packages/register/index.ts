@@ -1,6 +1,6 @@
-import LineHeight from '~/register/LineHeight'
 import Quill from 'quill'
+import LineHeightBlot from '~/register/lineHeight'
 
-Quill.register(LineHeight)
+Quill.register(LineHeightBlot)
 
 export default Quill
