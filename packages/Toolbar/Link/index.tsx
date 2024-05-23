@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Quill, { Range } from 'quill'
 import { IconLink } from '@tabler/icons-react'
+import LinkInput from '~/components/LinkInput'
 
 type Props = {
   editor: Quill | null
@@ -17,33 +18,8 @@ const Link: React.FC<Props> = ({ editor }) => {
   }
 
   const handleLink = () => {
-    if (!editor || !btnRef.current) {
-      return
-    }
-    const selection = editor.getSelection()
-    if (selection && selection.length != 0) {
-      const format = editor.getFormat(selection.index, selection.length)
-      if (format.hasOwnProperty('link')) {
-        editor.formatText(selection.index, selection.length, 'link', false)
-        setActive(btnRef.current, false)
-      } else {
-        editor.format('link', editor.getText(selection))
-        setActive(btnRef.current, true)
-      }
-    }
+    setShowInput((prevState) => !prevState)
   }
-
-  useEffect(() => {
-    if (!btnRef.current) {
-      return
-    }
-    if (btnRef.current) {
-      btnRef.current.addEventListener('click', handleLink)
-    }
-    return () => {
-      btnRef.current?.removeEventListener('click', handleLink)
-    }
-  }, [editor])
 
   useEffect(() => {
     if (!editor || !btnRef.current) {
@@ -68,10 +44,43 @@ const Link: React.FC<Props> = ({ editor }) => {
       editor.off('selection-change', handler)
     }
   }, [editor])
+
+  useEffect(() => {
+    const handler = () => {
+      setShowInput(false)
+    }
+    document.body.addEventListener('click', handler)
+
+    return () => {
+      document.body.removeEventListener('click', handler)
+    }
+  }, [])
+
+  const [showInput, setShowInput] = useState(false)
+
   return (
-    <button ref={btnRef}>
-      <IconLink className="rq-icon" />
-    </button>
+    <>
+      <button
+        ref={btnRef}
+        onClick={(e) => {
+          e.stopPropagation()
+          handleLink()
+        }}
+      >
+        <IconLink className="rq-icon" />
+      </button>
+      <LinkInput
+        editor={editor}
+        isShow={showInput}
+        onHide={() => {
+          if (!btnRef.current) {
+            return
+          }
+          setShowInput(false)
+          setActive(btnRef.current, false)
+        }}
+      />
+    </>
   )
 }
 
