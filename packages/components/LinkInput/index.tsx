@@ -35,7 +35,6 @@ const LinkInput: React.FC<Props> = ({ isShow, editor, onHide }) => {
   }, [editor])
 
   useEffect(() => {
-    console.log(isShow)
     init()
   }, [isShow])
 

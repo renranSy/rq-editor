@@ -14,6 +14,7 @@ import TextAlignment from '~/Toolbar/TextAlignment'
 import TextDirection from '~/Toolbar/TextDirection'
 import LineHeight from '~/Toolbar/LineHeight'
 import Link from '~/Toolbar/Link'
+import Header from '~/Toolbar/Header'
 
 export const defaultProps = {
   type: 'edit',
@@ -23,17 +24,12 @@ export const defaultProps = {
 }
 
 export const defaultItems: RQ.ToolbarItem[] = [
-  // {
-  //   key: 'head',
-  //   name: '标题',
-  //   element: (
-  //     <button>
-  //       <IconHeading className="rq-icon" />
-  //       <IconChevronDown className="rq-icon rq-icon-down" />
-  //     </button>
-  //   ),
-  //   divider: false
-  // },
+  {
+    key: 'header',
+    name: '标题',
+    element: (editor) => <Header editor={editor} />,
+    divider: false
+  },
   // {
   //   key: 'textSize',
   //   name: '字体大小',
