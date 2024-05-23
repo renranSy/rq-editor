@@ -54,7 +54,7 @@ const TextAlignment: React.FC<Props> = ({ editor }) => {
       editor.off('selection-change', handler)
       editor.off('editor-change', handler)
     }
-  }, [editor])
+  }, [editor, value])
 
   return (
     <Select
