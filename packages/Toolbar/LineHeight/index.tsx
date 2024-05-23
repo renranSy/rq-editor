@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import Quill from 'quill'
 import Select from '~/components/Select'
 import { IconCheck, IconLineHeight } from '@tabler/icons-react'
+import { RQ } from '~/type'
 
 type Props = {
   editor: Quill | null
 }
 
 const LineHeight: React.FC<Props> = ({ editor }) => {
-  const [value, setValue] = useState<string | boolean>('1.5')
+  const [value, setValue] = useState<RQ.Value>('1.5')
   const options = [
     {
       value: '1',
@@ -57,7 +58,7 @@ const LineHeight: React.FC<Props> = ({ editor }) => {
     }
   ]
 
-  const handleLineHeight = (value: string | boolean) => {
+  const handleLineHeight = (value: RQ.Value) => {
     if (!editor) {
       return
     }
@@ -77,7 +78,7 @@ const LineHeight: React.FC<Props> = ({ editor }) => {
       if (!range) {
         return
       }
-      setValue(editor.getFormat()['line-height'] as string | boolean)
+      setValue(editor.getFormat()['line-height'] as RQ.Value)
     }
     editor.on('selection-change', handler)
 
