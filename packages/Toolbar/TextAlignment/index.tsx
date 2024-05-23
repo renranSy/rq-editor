@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import Quill, { Range } from 'quill'
 import Select from '~/components/Select'
 import { IconAlignCenter, IconAlignJustified, IconAlignLeft, IconAlignRight } from '@tabler/icons-react'
+import { RQ } from '~/type'
 
 type Props = {
   editor: Quill | null
 }
 
 const TextAlignment: React.FC<Props> = ({ editor }) => {
-  const [value, setValue] = useState<string | boolean>(false)
+  const [value, setValue] = useState<RQ.Value>(false)
   const options = [
     {
       value: false,
@@ -28,7 +29,7 @@ const TextAlignment: React.FC<Props> = ({ editor }) => {
     }
   ]
 
-  const handleTextAlignment = (value: string | boolean) => {
+  const handleTextAlignment = (value: RQ.Value) => {
     if (!editor) {
       return
     }
@@ -48,11 +49,11 @@ const TextAlignment: React.FC<Props> = ({ editor }) => {
       if (!range) {
         return
       }
-      setValue(editor.getFormat()['align'] as string | boolean)
+      setValue(editor.getFormat()['align'] as RQ.Value)
     }
 
     const textChangeHandler = () => {
-      setValue(editor.getFormat()['align'] as string | boolean)
+      setValue(editor.getFormat()['align'] as RQ.Value)
     }
     editor.on('selection-change', selectionChangeHandler)
     editor.on('text-change', textChangeHandler)
