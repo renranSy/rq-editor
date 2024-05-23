@@ -1,6 +1,6 @@
 import Block from 'quill/blots/block'
 
-class LineHeight extends Block {
+class LineHeightBlot extends Block {
   static blotName = 'line-height'
   static tagName = 'div'
 
@@ -15,4 +15,4 @@ class LineHeight extends Block {
   }
 }
 
-export default LineHeight
+export default LineHeightBlot
