@@ -8,4 +8,6 @@ export namespace RQ {
     element: (editor: Quill | null) => React.JSX.Element
     divider?: boolean
   }
+
+  export type Value = number | string | boolean
 }
