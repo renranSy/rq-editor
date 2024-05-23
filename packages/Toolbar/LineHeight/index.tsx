@@ -73,13 +73,16 @@ const LineHeight: React.FC<Props> = ({ editor }) => {
       return
     }
 
-    const handler = () => {
+    const handler = (range: Range) => {
+      if (!range) {
+        return
+      }
       setValue(editor.getFormat()['line-height'] as string | boolean)
     }
-    editor.on('editor-change', handler)
+    editor.on('selection-change', handler)
 
     return () => {
-      editor.off('editor-change', handler)
+      editor.off('selection-change', handler)
     }
   }, [editor])
 
