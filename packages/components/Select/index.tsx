@@ -34,8 +34,11 @@ const Select: React.FC<Props> = ({ value, options, item, onChange }) => {
       return
     }
     btnRef.current.style.backgroundColor = '#f2f5f9'
-    optionsRef.current.style.opacity = '1'
-    optionsRef.current.style.zIndex = '99'
+    optionsRef.current.style.display = 'flex'
+    setTimeout(() => {
+      optionsRef.current!.style.opacity = '1'
+      optionsRef.current!.style.zIndex = '99'
+    }, 0)
     setOptionsActive(true)
   }
 
@@ -46,6 +49,9 @@ const Select: React.FC<Props> = ({ value, options, item, onChange }) => {
     btnRef.current.style.backgroundColor = '#ffffff'
     optionsRef.current.style.opacity = '0'
     optionsRef.current.style.zIndex = '-99'
+    setTimeout(() => {
+      optionsRef.current!.style.display = 'none'
+    }, 200)
     setOptionsActive(false)
   }
 
