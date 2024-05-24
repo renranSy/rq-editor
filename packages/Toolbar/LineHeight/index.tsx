@@ -85,7 +85,7 @@ const LineHeight: React.FC<Props> = ({ editor }) => {
     return () => {
       editor.off('selection-change', handler)
     }
-  }, [editor])
+  }, [editor, value])
 
   return (
     <Select value={value} onChange={setValue} item={() => <IconLineHeight className="rq-icon" />} options={options} />
