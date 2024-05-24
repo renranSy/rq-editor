@@ -15,6 +15,7 @@ import TextDirection from '~/Toolbar/TextDirection'
 import LineHeight from '~/Toolbar/LineHeight'
 import Link from '~/Toolbar/Link'
 import Header from '~/Toolbar/Header'
+import Size from '~/Toolbar/FontSize'
 
 export const defaultProps = {
   type: 'edit',
@@ -30,17 +31,12 @@ export const defaultItems: RQ.ToolbarItem[] = [
     element: (editor) => <Header editor={editor} />,
     divider: false
   },
-  // {
-  //   key: 'textSize',
-  //   name: '字体大小',
-  //   element: (
-  //     <button>
-  //       <IconTextSize className="rq-icon" />
-  //       <IconChevronDown className="rq-icon rq-icon-down" />
-  //     </button>
-  //   ),
-  //   divider: true
-  // },
+  {
+    key: 'textSize',
+    name: '字体大小',
+    element: (editor) => <Size editor={editor} />,
+    divider: true
+  },
   {
     key: 'bold',
     name: '加粗',
