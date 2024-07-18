@@ -16,6 +16,7 @@ import LineHeight from '~/Toolbar/LineHeight'
 import Link from '~/Toolbar/Link'
 import Header from '~/Toolbar/Header'
 import Size from '~/Toolbar/FontSize'
+import TextColor from '~/Toolbar/TextColor'
 
 export const defaultProps = {
   type: 'edit',
@@ -61,16 +62,13 @@ export const defaultItems: RQ.ToolbarItem[] = [
     element: (editor) => <Strike editor={editor} />,
     divider: false
   },
-  // {
-  //   key: 'textColor',
-  //   name: '文字颜色',
-  //   element: (
-  //     <button>
-  //       <IconTextColor className="rq-icon" />
-  //     </button>
-  //   ),
-  //   divider: false
-  // },
+  {
+    key: 'textColor',
+    name: '文字颜色',
+    element: (editor) => <TextColor editor={editor} />,
+
+    divider: false
+  },
   // {
   //   key: 'backgroundColor',
   //   name: '背景颜色',
