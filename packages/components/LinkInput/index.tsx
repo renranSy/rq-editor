@@ -62,9 +62,6 @@ const LinkInput: React.FC<Props> = ({ isShow, editor, onHide }) => {
       return
     }
     const { left, top, height } = bounds
-    console.log(editor.root.getBoundingClientRect().x)
-    console.log(editor.root.getBoundingClientRect().y)
-
     linkInputRef.current.style.left = `${left + editor.root.getBoundingClientRect().left}px`
     linkInputRef.current.style.top = `${top + editor.root.getBoundingClientRect().top + height}px`
     linkInputRef.current.style.opacity = '1'
