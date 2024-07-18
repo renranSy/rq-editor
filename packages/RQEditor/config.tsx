@@ -17,6 +17,7 @@ import Link from '~/Toolbar/Link'
 import Header from '~/Toolbar/Header'
 import Size from '~/Toolbar/FontSize'
 import TextColor from '~/Toolbar/TextColor'
+import BackgroundColor from '~/Toolbar/BackgroundColor'
 
 export const defaultProps = {
   type: 'edit',
@@ -66,19 +67,14 @@ export const defaultItems: RQ.ToolbarItem[] = [
     key: 'textColor',
     name: '文字颜色',
     element: (editor) => <TextColor editor={editor} />,
-
     divider: false
   },
-  // {
-  //   key: 'backgroundColor',
-  //   name: '背景颜色',
-  //   element: (
-  //     <button>
-  //       <IconHighlight className="rq-icon" />
-  //     </button>
-  //   ),
-  //   divider: false
-  // },
+  {
+    key: 'backgroundColor',
+    name: '背景颜色',
+    element: (editor) => <BackgroundColor editor={editor} />,
+    divider: false
+  },
   {
     key: 'subscript',
     name: '下标',
