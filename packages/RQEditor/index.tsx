@@ -27,7 +27,7 @@ const RTEditor: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (editorRef.current) {
-      editorRef.current.innerHTML = props.value
+      editorRef.current.innerHTML = props.value || ''
     }
   }, [])
 
