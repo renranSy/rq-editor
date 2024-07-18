@@ -11,7 +11,7 @@ const TextColor: React.FC<Props> = ({ editor }) => {
   const btnRef = useRef<HTMLButtonElement>(null)
   const colorPickerRef = useRef<HTMLDivElement>(null)
 
-  const [color, setColor] = useState<string | null | undefined>('#000000')
+  const [value, setValue] = useState<string | null | undefined>('#000000')
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -35,17 +35,15 @@ const TextColor: React.FC<Props> = ({ editor }) => {
         return
       }
       if (!range) {
-        console.log(range)
         return
       }
       const format = editor.getFormat(range.index, range.length)
 
       if (typeof format['color'] === 'string' || format['color'] === null || format['color'] === undefined) {
-        setColor(format['color'])
+        setValue(format['color'])
       } else if (typeof format['color'] === 'object' && Array.isArray(format['color'])) {
-        setColor(format['color'][0])
+        setValue(format['color'][0])
       }
-      console.log(format['color'])
     }
 
     editor.on('selection-change', handler)
@@ -98,7 +96,7 @@ const TextColor: React.FC<Props> = ({ editor }) => {
   }
 
   const onSelectColor = (color: string) => {
-    setColor(color)
+    setValue(color)
     handleColor(color)
 
     setTimeout(() => {
@@ -124,7 +122,7 @@ const TextColor: React.FC<Props> = ({ editor }) => {
         }}
         style={{ display: 'none', position: 'absolute', marginTop: '0.2rem', transition: 'all 200ms' }}
       >
-        <ColorPicker value={color} onChange={onSelectColor} />
+        <ColorPicker value={value} onChange={onSelectColor} />
       </div>
     </div>
   )
