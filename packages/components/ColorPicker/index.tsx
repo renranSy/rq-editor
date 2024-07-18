@@ -3,10 +3,11 @@ import './index.less'
 
 type Props = {
   value?: string | null
+  defaultValue?: string
   onChange?: (color: string) => void
 }
 
-const ColorPicker: React.FC<Props> = ({ value, onChange }) => {
+const ColorPicker: React.FC<Props> = ({ value, defaultValue, onChange }) => {
   const colorList = [
     '#000000',
     '#434343',
@@ -91,7 +92,7 @@ const ColorPicker: React.FC<Props> = ({ value, onChange }) => {
   ]
 
   const getValue = () => {
-    return value || '#000000'
+    return value || defaultValue || '#000000'
   }
 
   return (
@@ -136,10 +137,14 @@ const ColorPicker: React.FC<Props> = ({ value, onChange }) => {
           </div>
         ))}
       </div>
-      {!value || value === '#000000' ? null : (
-        <button onClick={() => {
-          onChange?.('#000000')
-        }} className="color-btn" style={{ marginTop: '1rem' }}>
+      {!value || value === (defaultValue || '#000000') ? null : (
+        <button
+          onClick={() => {
+            onChange?.(defaultValue || '#000000')
+          }}
+          className="color-btn"
+          style={{ marginTop: '1rem' }}
+        >
           重置
         </button>
       )}
