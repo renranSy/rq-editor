@@ -1,6 +1,6 @@
 {
   "name": "@renransy/rq-editor",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "基于Quill的React富文本编辑器",
   "keywords": [
     "quill",
@@ -10,7 +10,7 @@
   ],
   "author": {
     "name": "renranSy",
-    "email": "<2480901422@qq.com>",
+    "email": "2480901422@qq.com",
     "url": "https://github.com/renranSy"
   },
   "repository": {
@@ -23,8 +23,8 @@
   ],
   "type": "module",
   "types": "./lib/types/index.d.ts",
-  "main": "./lib/cjs/index.cjs",
-  "module": "./lib/es/index.mjs",
+  "main": "./lib/index.umd.cjs",
+  "module": "./lib/index.js",
   "sideEffects": [
     "**/*.css"
   ],
