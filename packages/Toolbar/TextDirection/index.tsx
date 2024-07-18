@@ -40,7 +40,7 @@ const TextDirection: React.FC<Props> = ({ editor }) => {
   }, [editor])
 
   return (
-    <button ref={btnRef}>
+    <button className="rq-button" ref={btnRef}>
       {direction ? <IconTextDirectionRtl className="rq-icon" /> : <IconTextDirectionLtr className="rq-icon" />}
     </button>
   )

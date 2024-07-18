@@ -77,7 +77,7 @@ const CodeBlock: React.FC<Props> = ({ editor }) => {
     }
   }, [editor])
   return (
-    <button ref={btnRef}>
+    <button className="rq-button" ref={btnRef}>
       <IconFileCode className="rq-icon" />
     </button>
   )

@@ -31,7 +31,7 @@ const Indent: React.FC<Props> = ({ editor, indent }) => {
   }, [editor])
 
   return (
-    <button ref={btnRef}>
+    <button className="rq-button" ref={btnRef}>
       {indent === '-1' ? <IconIndentDecrease className="rq-icon" /> : <IconIndentIncrease className="rq-icon" />}
     </button>
   )

@@ -79,7 +79,7 @@ const Strike: React.FC<Props> = ({ editor }) => {
     }
   }, [editor])
   return (
-    <button ref={btnRef}>
+    <button className="rq-button" ref={btnRef}>
       <IconStrikethrough className="rq-icon" />
     </button>
   )

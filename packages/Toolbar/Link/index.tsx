@@ -61,6 +61,7 @@ const Link: React.FC<Props> = ({ editor }) => {
   return (
     <>
       <button
+        className="rq-button"
         ref={btnRef}
         onClick={(e) => {
           e.stopPropagation()

@@ -79,7 +79,7 @@ const Italic: React.FC<Props> = ({ editor }) => {
     }
   }, [editor])
   return (
-    <button ref={btnRef}>
+    <button className="rq-button" ref={btnRef}>
       <IconItalic className="rq-icon" />
     </button>
   )

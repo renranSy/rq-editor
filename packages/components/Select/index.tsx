@@ -79,6 +79,7 @@ const Select: React.FC<Props> = ({ value, options, item, onChange }) => {
     <>
       <div className="rq-select">
         <button
+          className="rq-button"
           ref={btnRef}
           onClick={(e) => {
             e.stopPropagation()

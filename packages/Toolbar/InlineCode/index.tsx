@@ -78,7 +78,7 @@ const InlineCode: React.FC<Props> = ({ editor }) => {
     }
   }, [editor])
   return (
-    <button ref={btnRef}>
+    <button className="rq-button" ref={btnRef}>
       <IconCode className="rq-icon" />
     </button>
   )

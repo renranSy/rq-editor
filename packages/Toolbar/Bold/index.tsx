@@ -78,7 +78,7 @@ const Bold: React.FC<Props> = ({ editor }) => {
     }
   }, [editor])
   return (
-    <button ref={btnRef}>
+    <button className="rq-button" ref={btnRef}>
       <IconBold className="rq-icon" />
     </button>
   )

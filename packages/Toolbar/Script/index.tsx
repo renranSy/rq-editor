@@ -84,7 +84,7 @@ const Script: React.FC<Props> = ({ editor, script }) => {
     }
   }, [editor])
   return (
-    <button ref={btnRef}>
+    <button className="rq-button" ref={btnRef}>
       {script === 'sub' ? <IconSubscript className="rq-icon" /> : <IconSuperscript className="rq-icon" />}
     </button>
   )

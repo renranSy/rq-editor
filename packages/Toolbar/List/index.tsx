@@ -68,7 +68,7 @@ const List: React.FC<Props> = ({ editor, list }) => {
     }
   }, [editor])
   return (
-    <button ref={btnRef}>
+    <button className="rq-button" ref={btnRef}>
       {list === 'ordered' ? <IconListNumbers className="rq-icon" /> : <IconList className="rq-icon" />}
     </button>
   )

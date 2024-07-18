@@ -66,7 +66,7 @@ const Blockquote: React.FC<Props> = ({ editor }) => {
     }
   }, [editor])
   return (
-    <button ref={btnRef}>
+    <button className="rq-button" ref={btnRef}>
       <IconQuote className="rq-icon" />
     </button>
   )
