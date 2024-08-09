@@ -36,11 +36,13 @@
   },
   "dependencies": {
     "@tabler/icons-react": "^3.3.0",
+    "katex": "^0.16.11",
     "quill": "^2.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@types/katex": "^0.16.7",
     "@types/node": "^20.12.11",
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.3.0",

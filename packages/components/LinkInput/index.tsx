@@ -4,13 +4,14 @@ import { IconAlignJustified, IconLink } from '@tabler/icons-react'
 import Quill, { Range } from 'quill'
 
 type Props = {
-  isShow: boolean
+  open: boolean
   editor: Quill | null
   onHide: () => void
 }
 
-const LinkInput: React.FC<Props> = ({ isShow, editor, onHide }) => {
+const LinkInput: React.FC<Props> = ({ open, editor, onHide }) => {
   const linkInputRef = useRef<HTMLDivElement>(null)
+  const urlInputRef = useRef<HTMLInputElement>(null)
 
   const [title, setTitle] = useState('')
   const [url, setUrl] = useState('')
@@ -36,14 +37,14 @@ const LinkInput: React.FC<Props> = ({ isShow, editor, onHide }) => {
 
   useEffect(() => {
     init()
-  }, [isShow])
+  }, [open])
 
   const init = () => {
-    if (!linkInputRef.current || !editor) {
+    if (!linkInputRef.current || !editor || !urlInputRef.current) {
       return
     }
 
-    if (!isShow) {
+    if (!open) {
       linkInputRef.current.style.opacity = '0'
       linkInputRef.current.style.opacity = '0'
       linkInputRef.current.style.zIndex = '-1'
@@ -66,6 +67,8 @@ const LinkInput: React.FC<Props> = ({ isShow, editor, onHide }) => {
     linkInputRef.current.style.top = `${top + editor.root.getBoundingClientRect().top + height}px`
     linkInputRef.current.style.opacity = '1'
     linkInputRef.current.style.zIndex = '100'
+
+    urlInputRef.current.focus()
   }
 
   const onInsertLink = () => {
@@ -92,6 +95,7 @@ const LinkInput: React.FC<Props> = ({ isShow, editor, onHide }) => {
       <div className="rq-input-box">
         <IconLink className="input-icon" />
         <input
+          ref={urlInputRef}
           value={url}
           placeholder="请输入链接"
           onChange={(e) => {

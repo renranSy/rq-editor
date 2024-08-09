@@ -1,28 +1,29 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Quill, { Range } from 'quill'
-import { IconLink } from '@tabler/icons-react'
-import LinkInput from '~/components/LinkInput'
+import { IconMathFunction } from '@tabler/icons-react'
+import FormulaInput from '~/components/FormulaInput'
+import katex from 'katex'
+
+window.katex = katex
 
 type Props = {
   editor: Quill | null
 }
 
-const Link: React.FC<Props> = ({ editor }) => {
+const Formula: React.FC<Props> = ({ editor }) => {
   const btnRef = useRef<HTMLButtonElement>(null)
-
   const [showInput, setShowInput] = useState(false)
 
-  const setActive = (element: HTMLButtonElement, status: boolean) => {
-    if (status) {
-      element.style.backgroundColor = '#f2f5f9'
-    } else {
-      element.style.backgroundColor = '#ffffff'
+  useEffect(() => {
+    const handler = () => {
+      setShowInput(false)
     }
-  }
+    document.addEventListener('click', handler)
 
-  const handleLink = () => {
-    setShowInput((prevState) => !prevState)
-  }
+    return () => {
+      document.removeEventListener('click', handler)
+    }
+  }, [])
 
   useEffect(() => {
     if (!editor || !btnRef.current) {
@@ -34,7 +35,8 @@ const Link: React.FC<Props> = ({ editor }) => {
         return
       }
       const isFormat =
-        editor.getFormat(range.index, range.length).hasOwnProperty('link') || editor.getFormat().hasOwnProperty('link')
+        editor.getFormat(range.index, range.length).hasOwnProperty('formula') ||
+        editor.getFormat().hasOwnProperty('formula')
       if (isFormat) {
         setActive(btnRef.current, true)
       } else {
@@ -48,16 +50,17 @@ const Link: React.FC<Props> = ({ editor }) => {
     }
   }, [editor])
 
-  useEffect(() => {
-    const handler = () => {
-      setShowInput(false)
+  const setActive = (element: HTMLButtonElement, status: boolean) => {
+    if (status) {
+      element.style.backgroundColor = '#f2f5f9'
+    } else {
+      element.style.backgroundColor = '#ffffff'
     }
-    document.body.addEventListener('click', handler)
+  }
 
-    return () => {
-      document.body.removeEventListener('click', handler)
-    }
-  }, [])
+  const handleFormula = () => {
+    setShowInput((prevState) => !prevState)
+  }
 
   return (
     <>
@@ -66,12 +69,12 @@ const Link: React.FC<Props> = ({ editor }) => {
         ref={btnRef}
         onClick={(e) => {
           e.stopPropagation()
-          handleLink()
+          handleFormula()
         }}
       >
-        <IconLink className="rq-icon" />
+        <IconMathFunction className="rq-icon" />
       </button>
-      <LinkInput
+      <FormulaInput
         open={showInput}
         editor={editor}
         onHide={() => {
@@ -86,4 +89,4 @@ const Link: React.FC<Props> = ({ editor }) => {
   )
 }
 
-export default Link
+export default Formula

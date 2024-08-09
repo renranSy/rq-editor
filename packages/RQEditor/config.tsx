@@ -18,6 +18,7 @@ import Header from '~/Toolbar/Header'
 import Size from '~/Toolbar/FontSize'
 import TextColor from '~/Toolbar/TextColor'
 import BackgroundColor from '~/Toolbar/BackgroundColor'
+import Formula from '~/Toolbar/Formula'
 
 export const defaultProps = {
   type: 'edit',
@@ -162,7 +163,7 @@ export const defaultItems: RQ.ToolbarItem[] = [
     name: '链接',
     element: (editor) => <Link editor={editor} />,
     divider: false
-  }
+  },
   // {
   //   key: 'image',
   //   name: '图片',
@@ -194,6 +195,12 @@ export const defaultItems: RQ.ToolbarItem[] = [
   //     </button>
   //   ),
   //   divider: true
+  // },
+  // {
+  //   key: 'formula',
+  //   name: '公式',
+  //   element: (editor) => <Formula editor={editor} />,
+  //   divider: false
   // },
   // {
   //   key: 'clear',
