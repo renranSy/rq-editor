@@ -77,13 +77,19 @@ const Select: React.FC<Props> = ({ value, options, item, onChange }) => {
 
   return (
     <>
-      <div className="rq-select">
+      <div
+        className="rq-select"
+        onMouseLeave={(e) => {
+          e.stopPropagation()
+          hideOptions()
+        }}
+      >
         <button
           className="rq-button"
           ref={btnRef}
-          onClick={(e) => {
+          onMouseEnter={(e) => {
             e.stopPropagation()
-            onClickBtn()
+            showOptions()
           }}
         >
           {item(value)}
