@@ -4,7 +4,7 @@ import Quill from '~/register'
 
 const App = () => {
   const [value, setValue] = useState('')
-  const [editor, setEditor] = useState<Quill >()
+  const [editor, setEditor] = useState<Quill>()
 
   return (
     <>
@@ -17,7 +17,6 @@ const App = () => {
           onChange={(content) => {
             setValue(content)
           }}
-          custom={[]}
         />
       </div>
     </>

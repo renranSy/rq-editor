@@ -1,10 +1,10 @@
 import React, { CSSProperties, useEffect, useRef, useState } from 'react'
 import './index.less'
 import Toolbar from '~/Toolbar'
-import { RQ } from '~/type'
 import { defaultItems } from '~/RQEditor/config'
 import 'quill/dist/quill.snow.css'
 import Quill from '~/register'
+import { RQ } from '~/type'
 
 type Props = {
   value: string
@@ -24,12 +24,15 @@ type Props = {
   type?: 'preview' | 'edit'
   mode?: 'light' | 'normal'
   toolbar?: string[]
-  custom?: RQ.ToolbarItem[]
+  custom?: RQ.CustomToolbarItem[]
+  namePosition?: 'top' | 'right' | 'bottom' | 'left'
 }
 
 const RTEditor: React.FC<Props> = (props) => {
   const editorRef = useRef<HTMLDivElement>(null)
   const [editor, setEditor] = useState<Quill | null>(null)
+
+  const [toolbarItems, setToolbarItems] = useState<RQ.ToolbarItem[]>([])
 
   useEffect(() => {
     if (!editor) {
@@ -39,10 +42,45 @@ const RTEditor: React.FC<Props> = (props) => {
   }, [editor])
 
   useEffect(() => {
+    if (!props.toolbar) {
+      setToolbarItems(defaultItems)
+      return
+    }
+
+    try {
+      const items = props.toolbar.map((key) => {
+        const item = defaultItems.find((item) => item.key === key)
+        if (!item) {
+          throw new Error('toolbar keys error: ' + key)
+        }
+        return item
+      })
+      if (props.custom) {
+        items.forEach((toolbar) => {
+          if (props.custom!.map((custom) => custom.key).includes(toolbar.key)) {
+            const temp = props.custom!.find((item) => item.key === toolbar.key)
+            if (!temp) {
+              throw new Error('custom keys error: ' + toolbar.key)
+            }
+            toolbar.divider = temp.divider ?? false
+            toolbar.name = temp.name ?? ''
+          }
+        })
+        console.log(props.custom)
+        console.log(items)
+      }
+      setToolbarItems(items)
+    } catch (e) {
+      setToolbarItems([])
+      console.error(e)
+    }
+  }, [props])
+
+  useEffect(() => {
     if (editorRef.current) {
       editorRef.current.innerHTML = props.value || ''
     }
-  }, [])
+  }, [editorRef])
 
   useEffect(() => {
     if (!editorRef.current) {
@@ -93,7 +131,7 @@ const RTEditor: React.FC<Props> = (props) => {
 
   return (
     <div className={['rq-container', props.divClassName].join(' ')} style={props.containerStyle}>
-      <Toolbar className="ql-toolbar" items={defaultItems} editor={editor} />
+      <Toolbar className="ql-toolbar" items={toolbarItems} editor={editor} namePosition={props.namePosition} />
       <div ref={editorRef} className={['rq-editor', props.editorClassName].join(' ')}></div>
     </div>
   )

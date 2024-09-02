@@ -10,4 +10,10 @@ export namespace RQ {
   }
 
   export type Value = number | string | boolean
+
+  export type CustomToolbarItem = {
+    key: string
+    name?: string
+    divider?: boolean
+  }
 }
