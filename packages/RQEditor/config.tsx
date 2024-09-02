@@ -196,12 +196,12 @@ export const defaultItems: RQ.ToolbarItem[] = [
   //   ),
   //   divider: true
   // },
-  // {
-  //   key: 'formula',
-  //   name: '公式',
-  //   element: (editor) => <Formula editor={editor} />,
-  //   divider: false
-  // },
+  {
+    key: 'formula',
+    name: '公式',
+    element: (editor) => <Formula editor={editor} />,
+    divider: false
+  },
   // {
   //   key: 'clear',
   //   name: '清除格式',

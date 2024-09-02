@@ -75,8 +75,9 @@ const FormulaInput: React.FC<Props> = ({ open, editor, onHide }) => {
       return
     }
 
-    editor.insertEmbed(range?.index || 0, 'formula', value)
-    // editor.setSelection((range?.index || 0) + value.length)
+    editor.insertEmbed(range?.index || 0, 'Formula', value)
+    editor.setSelection((range?.index || 0) + value.length)
+
     onHide()
     setValue('')
   }
@@ -98,6 +99,7 @@ const FormulaInput: React.FC<Props> = ({ open, editor, onHide }) => {
           setValue(e.currentTarget.value)
         }}
         onKeyUp={(e) => {
+          e.stopPropagation()
           if (e.key === 'Enter') {
             onInsertFormula()
           }

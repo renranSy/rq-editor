@@ -2,9 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import Quill, { Range } from 'quill'
 import { IconMathFunction } from '@tabler/icons-react'
 import FormulaInput from '~/components/FormulaInput'
-import katex from 'katex'
-
-window.katex = katex
 
 type Props = {
   editor: Quill | null
