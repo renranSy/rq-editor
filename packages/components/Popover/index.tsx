@@ -5,10 +5,10 @@ type Props = {
   children: ReactNode
   content: string
   position?: 'top' | 'bottom' | 'left' | 'right'
-  offset?: number
+  offset?: string
 }
 
-const Popover: React.FC<Props> = ({ content, children, position = 'top', offset = 4 }) => {
+const Popover: React.FC<Props> = ({ content, children, position = 'top', offset = '4px' }) => {
   const popBoxRef = useRef<HTMLDivElement>(null)
 
   const show = () => {
@@ -16,6 +16,7 @@ const Popover: React.FC<Props> = ({ content, children, position = 'top', offset 
       return
     }
     popBoxRef.current.style.opacity = '1'
+    popBoxRef.current.style.zIndex = '999'
   }
 
   const hide = () => {
@@ -23,6 +24,7 @@ const Popover: React.FC<Props> = ({ content, children, position = 'top', offset 
       return
     }
     popBoxRef.current.style.opacity = '0'
+    popBoxRef.current.style.zIndex = '-999'
   }
 
   const getStyle = (value: string): React.CSSProperties => {
@@ -31,21 +33,21 @@ const Popover: React.FC<Props> = ({ content, children, position = 'top', offset 
     switch (value) {
       case 'top':
         styles.left = '50%'
-        styles.top = `-${offset}px`
+        styles.top = `-${offset}`
         styles.transform = 'translate(-50%, -100%) scale(1)'
         break
       case 'bottom':
         styles.left = '50%'
-        styles.bottom = `-${offset}px`
+        styles.bottom = `-${offset}`
         styles.transform = 'translate(-50%, 100%) scale(1)'
         break
       case 'left':
-        styles.left = `-${offset}px`
+        styles.left = `-${offset}`
         styles.top = '50%'
         styles.transform = 'translate(-100%, -50%) scale(1)'
         break
       case 'right':
-        styles.right = `-${offset}px`
+        styles.right = `-${offset}`
         styles.top = '50%'
         styles.transform = 'translate(100%, -50%) scale(1)'
         break

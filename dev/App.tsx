@@ -10,6 +10,7 @@ const App = () => {
     <>
       <div style={{ width: '100%', margin: '8rem auto' }}>
         <RTEditor
+          icon={{ popName: { show: true, position: 'right', offset: '220px' }, size: '32px', color: 'red', hoverColor: 'black' }}
           onCreate={(editor) => {
             setEditor(editor)
           }}

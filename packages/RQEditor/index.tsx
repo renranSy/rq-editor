@@ -2,7 +2,6 @@ import React, { CSSProperties, useEffect, useRef, useState } from 'react'
 import './index.less'
 import Toolbar from '~/Toolbar'
 import { defaultItems } from '~/RQEditor/config'
-import 'quill/dist/quill.snow.css'
 import Quill from '~/register'
 import { RQ } from '~/type'
 
@@ -21,15 +20,24 @@ type Props = {
   containerStyle?: CSSProperties
   toolbarStyle?: CSSProperties
   editorStyle?: CSSProperties
-  type?: 'preview' | 'edit'
-  mode?: 'light' | 'normal'
   toolbar?: string[]
   custom?: RQ.CustomToolbarItem[]
-  namePosition?: 'top' | 'right' | 'bottom' | 'left'
+  icon?: {
+    size?: string
+    color?: string
+    hoverColor?: string
+    popName?: {
+      position?: 'top' | 'right' | 'bottom' | 'left'
+      offset?: string
+      fontSize?: string
+      show?: boolean
+    }
+  }
 }
 
 const RTEditor: React.FC<Props> = (props) => {
   const editorRef = useRef<HTMLDivElement>(null)
+  const toolbarRef = useRef<HTMLDivElement>(null)
   const [editor, setEditor] = useState<Quill | null>(null)
 
   const [toolbarItems, setToolbarItems] = useState<RQ.ToolbarItem[]>([])
@@ -66,8 +74,6 @@ const RTEditor: React.FC<Props> = (props) => {
             toolbar.name = temp.name ?? ''
           }
         })
-        console.log(props.custom)
-        console.log(items)
       }
       setToolbarItems(items)
     } catch (e) {
@@ -75,6 +81,24 @@ const RTEditor: React.FC<Props> = (props) => {
       console.error(e)
     }
   }, [props])
+
+  useEffect(() => {
+    if (!props.icon || !toolbarRef.current) {
+      return
+    }
+    const iconList = toolbarRef.current.querySelectorAll<HTMLDivElement>('.rq-icon')
+    iconList.forEach((item) => {
+      item.style.width = props.icon?.size ?? '24px'
+      item.style.height = props.icon?.size ?? '24px'
+      item.style.stroke = props.icon?.color ?? '#818ea3'
+    })
+
+    const popNameList = toolbarRef.current.querySelectorAll<HTMLDivElement>('.pop-box')
+    popNameList.forEach((item) => {
+      item.style.fontSize = props.icon?.popName?.fontSize ?? '14px'
+      item.style.display = props.icon?.popName?.show ? 'block' : 'none'
+    })
+  }, [props, toolbarRef])
 
   useEffect(() => {
     if (editorRef.current) {
@@ -131,7 +155,15 @@ const RTEditor: React.FC<Props> = (props) => {
 
   return (
     <div className={['rq-container', props.divClassName].join(' ')} style={props.containerStyle}>
-      <Toolbar className="ql-toolbar" items={toolbarItems} editor={editor} namePosition={props.namePosition} />
+      <div ref={toolbarRef}>
+        <Toolbar
+          className="ql-toolbar"
+          items={toolbarItems}
+          editor={editor}
+          namePosition={props.icon?.popName?.position}
+          nameOffset={props.icon?.popName?.offset}
+        />
+      </div>
       <div ref={editorRef} className={['rq-editor', props.editorClassName].join(' ')}></div>
     </div>
   )

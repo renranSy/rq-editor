@@ -1,6 +1,6 @@
 {
   "name": "@renransy/rq-editor",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "基于Quill的React富文本编辑器",
   "keywords": [
     "quill",
