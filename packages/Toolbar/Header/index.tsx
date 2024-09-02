@@ -75,6 +75,7 @@ const Header: React.FC<Props> = ({ editor }) => {
 
   return (
     <Select
+      name="header"
       value={value}
       onChange={setValue}
       item={(value) =>

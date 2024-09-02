@@ -67,6 +67,7 @@ const TextAlignment: React.FC<Props> = ({ editor }) => {
   return (
     <Select
       value={value}
+      name="align"
       onChange={setValue}
       item={(value) => (options.find((item) => item.value === value) || options[0]).element}
       options={options}

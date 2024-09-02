@@ -82,7 +82,13 @@ const FontSize: React.FC<Props> = ({ editor }) => {
   }, [editor, value])
 
   return (
-    <Select value={value} onChange={setValue} item={() => <IconTextSize className="rq-icon" />} options={options} />
+    <Select
+      value={value}
+      name="font-size"
+      onChange={setValue}
+      item={() => <IconTextSize className="rq-icon" />}
+      options={options}
+    />
   )
 }
 

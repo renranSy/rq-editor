@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { IconChevronDown } from '@tabler/icons-react'
 import { RQ } from '~/type'
+import EventEmitter from '~/utils/mitt'
 
 type Props = {
   value: RQ.Value
+  name: string
   onChange: (value: RQ.Value) => void
   item: (value: RQ.Value) => React.ReactNode
   options: SelectOption[]
@@ -14,7 +16,7 @@ type SelectOption = {
   element: React.ReactNode
 }
 
-const Select: React.FC<Props> = ({ value, options, item, onChange }) => {
+const Select: React.FC<Props> = ({ value, name, options, item, onChange }) => {
   const btnRef = useRef<HTMLButtonElement>(null)
   const [optionsActive, setOptionsActive] = useState(false)
   const optionsRef = useRef<HTMLDivElement>(null)
@@ -29,6 +31,18 @@ const Select: React.FC<Props> = ({ value, options, item, onChange }) => {
       document.removeEventListener('click', callback)
     }
   })
+
+  useEffect(() => {
+    const handler = (value: string) => {
+      if (value !== name) {
+        hideOptions()
+      }
+    }
+    EventEmitter.on('show-option', handler)
+    return () => {
+      EventEmitter.off('show-option', handler)
+    }
+  }, [])
 
   const showOptions = () => {
     if (!optionsRef.current || !btnRef.current) {
@@ -60,6 +74,7 @@ const Select: React.FC<Props> = ({ value, options, item, onChange }) => {
     if (optionsActive) {
       hideOptions()
     } else {
+      EventEmitter.emit('show-option', name)
       showOptions()
     }
   }
@@ -77,19 +92,13 @@ const Select: React.FC<Props> = ({ value, options, item, onChange }) => {
 
   return (
     <>
-      <div
-        className="rq-select"
-        onMouseLeave={(e) => {
-          e.stopPropagation()
-          hideOptions()
-        }}
-      >
+      <div className="rq-select">
         <button
           className="rq-button"
           ref={btnRef}
-          onMouseEnter={(e) => {
+          onClick={(e) => {
             e.stopPropagation()
-            showOptions()
+            onClickBtn()
           }}
         >
           {item(value)}
